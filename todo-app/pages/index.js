@@ -32,6 +32,15 @@ export default function Home() {
     });
     fetchTodos();
   };
+  const deleteTodo = async (id) => {
+  const confirmDelete = window.confirm('Are you sure you want to delete this task?');
+  if (!confirmDelete) return;
+  await fetch(`/api/todos/${id}`, {
+    method: 'DELETE',
+  });
+  fetchTodos();
+};
+
 
   const markComplete = async (id) => {
     await fetch(`/api/todos/${id}`, {
@@ -63,6 +72,7 @@ export default function Home() {
                 }
               />
               <button onClick={() => markComplete(todo._id)}>Mark Complete</button>
+              <button onClick={() => deleteTodo(todo._id)}>Delete</button>
             </div>
           ))}
       </div>

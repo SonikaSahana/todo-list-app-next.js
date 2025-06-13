@@ -13,6 +13,11 @@ export default async function handler(req, res) {
       { $set: { ...(title && { title }), ...(status && { status }) } }
     );
     res.status(200).json({ message: 'Updated' });
+
+  } else if (req.method === 'DELETE') {
+    await db.collection('todos').deleteOne({ _id: new ObjectId(id) });
+    res.status(200).json({ message: 'Deleted' });
+
   } else {
     res.status(405).end();
   }
