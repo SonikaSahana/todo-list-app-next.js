@@ -37,9 +37,13 @@ export default function Home() {
       <button onClick={addTodo}>Add Todo</button>
 
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>{todo.title}</li>
-        ))}
+        {todos.map((todo) => (
+  <div key={todo._id}>
+    <p>
+      {todo.title} - {todo.status === 'complete' ? '✅ Complete' : '❌ Incomplete'}
+    </p>
+  </div>
+))}
       </ul>
     </div>
   );
